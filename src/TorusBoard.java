@@ -5,13 +5,13 @@ public class TorusBoard {
     private int WIDTH;
     private int HEIGHT;
     private boolean[][] currentBoard;
-    private boolean[][] nextboard;
+    private boolean[][] nextBoard;
 
-    public TorusBoard(int width, int height, boolean[][] board){
-        this.WIDTH = width;
-        this.HEIGHT = height;
+    public TorusBoard(boolean[][] board){
+        this.WIDTH = board[0].length;
+        this.HEIGHT = board.length;
         this.currentBoard = board;
-        nextboard = board;
+        nextBoard = board;
     }
 
     public TorusBoard(int width, int height){
@@ -24,20 +24,16 @@ public class TorusBoard {
                 currentBoard[i][j] = false;
             }
         }
-        nextboard = currentBoard;
+        nextBoard = currentBoard;
     }
 
-    public void changeNextboard(int row, int column, boolean life){
-        currentBoard[row][column] = life;
+    public void changeNextBoard(int row, int column, boolean life){
+        nextBoard[row][column] = life;
     }
 
     public void update(){
-        currentBoard = nextboard;
-        nextboard = currentBoard;
-    }
-
-    public boolean get(int row, int column){
-        return currentBoard[row][column];
+        currentBoard = nextBoard;
+        nextBoard = currentBoard;
     }
 
     public int getHeight() {
@@ -50,6 +46,10 @@ public class TorusBoard {
 
     public boolean[][] getCurrentBoard(){
         return currentBoard;
+    }
+
+    public boolean isAlive(int row, int col){
+        return currentBoard[row][col];
     }
 
 
